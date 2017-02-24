@@ -70,8 +70,33 @@ class Smula
 
 	function makeController($name)
 	{
+		$currentFolder = exec('pwd');
+		$projectFolder = $this->findProjectFolder($currentFolder);
+
 		echo "Generating a controller with the name $name\n";
+
+		$controller = file_get_contents(__DIR__.'/../templates/controller.php');
+		$controller = str_replace("[NAME]", $name, $controller);
+		file_put_contents($projectFolder."/app/controllers/".$name.".php", $controller);
+
 		exit(0);
+	}
+
+	function findProjectFolder($current)
+	{
+		if ($current == false) {
+			echo "Unable to find project directory\n";
+			exit(1);
+		}
+
+		$files = scandir($current);
+		if (in_array('app', $files))
+			return $current;
+
+		$folders = explode('/', $current);
+		array_pop($folders);
+
+		return $this->findProjectFolder(implode('/', $folders));
 	}
 }
 
