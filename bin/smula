@@ -4,10 +4,23 @@
 
 class Smula
 {
-	function __construct()
+	function __construct($argv)
 	{
-		global $argv;
 		if (count($argv) < 3) {
+			if (isset($argv[1])) {
+				switch ($argv[1]) {
+					case 'serve':
+						$projectFolder = $this->findProjectFolder();
+						echo "Serving on http://localhost:808 Ctrl-C to exit\n";
+						exec("sudo php -S localhost:808 -t $projectFolder/public");
+
+						exit(0);
+					
+					default:
+						break;
+				}
+			}
+
 			echo "Not enough arguments!\n";
 			if (!isset($argv[1]))
 				echo "Please specify an option\n";
@@ -51,6 +64,8 @@ class Smula
 
 		exec("mkdir $name");
 		exec("cp -R ".__DIR__."/../src/. $name/.");
+		exec("mv $name/gitignore $name/.gitignore");
+		exec("cd $name && composer install");
 
 		exit(0);
 	}
@@ -70,8 +85,7 @@ class Smula
 
 	function makeController($name)
 	{
-		$currentFolder = exec('pwd');
-		$projectFolder = $this->findProjectFolder($currentFolder);
+		$projectFolder = $this->findProjectFolder();
 
 		echo "Generating a controller with the name $name\n";
 
@@ -82,8 +96,12 @@ class Smula
 		exit(0);
 	}
 
-	function findProjectFolder($current)
+	function findProjectFolder($current = "recursive")
 	{
+		if ($current == "recursive") {
+			$current = exec('pwd');
+		}
+
 		if ($current == false) {
 			echo "Unable to find project directory\n";
 			exit(1);
@@ -100,6 +118,6 @@ class Smula
 	}
 }
 
-new Smula();
+new Smula($argv);
 
 ?>
