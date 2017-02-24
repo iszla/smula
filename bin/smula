@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+
+<?php
+
+if (count($argv) < 3) {
+	echo "Not enough arguments\n";
+	return 1;
+}
+
+$option = $argv[1];
+$name = $argv[2];
+
+if (strpos($option, ':'))
+	$option = explode(':', $option);
+
+if (is_array($option)) {
+	echo "You chose to $option[0] a new $option[1] with the name $name\n";
+	return 0;
+}
+
+echo "You chose option $option with name $name\n";
+return 0;
+?>
