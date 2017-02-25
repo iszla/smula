@@ -4,6 +4,8 @@
 
 class Smula
 {
+	private $version = '0.0.2';
+
 	function __construct($argv)
 	{
 		if (count($argv) < 3) {
@@ -15,7 +17,21 @@ class Smula
 						exec("sudo php -S localhost:808 -t $projectFolder/public");
 
 						exit(0);
-					
+
+					case 'help':
+						$this->displayHelp();
+						exit(0);
+
+					case 'update':
+						$path = substr(exec('which smula'), 0, -9);
+						echo exec("cd $path && git pull");
+						echo "\n";
+						exec("smula version");
+
+					case 'version':
+						echo "Version: $this->version\n";
+						exit(0);
+
 					default:
 						break;
 				}
@@ -27,7 +43,6 @@ class Smula
 			if (!isset($argv[2]))
 				echo "Please specify a name\n";
 
-			echo "\nUsage: smula [option] [name]\n";
 			exit(1);
 		}
 
@@ -45,7 +60,7 @@ class Smula
 				case 'make':
 					$this->makeSelector($option[1], $name);
 					break;
-				
+
 				default:
 					echo "Invalid option\n";
 					exit(1);
@@ -76,7 +91,7 @@ class Smula
 			case 'controller':
 				$this->makeController($name);
 				break;
-			
+
 			default:
 				echo "Invalid option\n";
 				exit(1);
@@ -115,6 +130,18 @@ class Smula
 		array_pop($folders);
 
 		return $this->findProjectFolder(implode('/', $folders));
+	}
+
+	function displayHelp()
+	{
+		echo "Usage: smula [option] [name]\n\n";
+		echo "Options:\n";
+		echo "help \t\t\tShow this help\n";
+		echo "update \t\t\tUpdate smula\n";
+		echo "version \t\tShow current version\n";
+		echo "\n";
+		echo "new [name]\t\tCreate a new project in folder [name]\n";
+		echo "make:controller [name]\tMake a new controller with the [name]\n";
 	}
 }
 
