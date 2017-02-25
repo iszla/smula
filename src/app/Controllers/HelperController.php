@@ -13,12 +13,12 @@ class HelperController
     {
         $contentFound = false;
         $content = "";
-        
+
         $file = fopen($path, 'r');
         if ($file) {
             while(($line = fgets($file)) !== false) {
-                if (strpos($line, 'Title:') === 0) {
-                    $title = substr($line, 6);
+                if (strpos($line, 'title:') === 0) {
+                    $title = ltrim(substr($line, 6));
                 }
 
                 if ($contentFound) {
@@ -28,7 +28,7 @@ class HelperController
                     $content .= $line;
                 }
 
-                if (strpos($line, 'Content:') === 0) {
+                if (strpos($line, 'content:') === 0) {
                     $contentFound = true;
                 }
             }

@@ -1,4 +1,4 @@
-Title:This is about me
+title:This is about me
 
-Content:
+content:
 So who am I? I am Smula, a minimal PHP frameword for Markdown powered websites.
