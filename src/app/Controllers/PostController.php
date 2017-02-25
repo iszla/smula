@@ -14,7 +14,7 @@ class PostController
         $file = fopen($path, 'r');
         if ($file) {
             while(($line = fgets($file)) !== false) {
-                if (strpos($line, 'Title=') === 0) {
+                if (strpos($line, 'Title:') === 0) {
                     $title = substr($line, 6);
                 }
 
@@ -22,7 +22,7 @@ class PostController
                     $content .= $line;
                 }
 
-                if (strpos($line, 'Content=') === 0) {
+                if (strpos($line, 'Content:') === 0) {
                     $contentFound = true;
                 }
             }
@@ -34,5 +34,18 @@ class PostController
             'MODIFIED_AT' => $mtime,
             'CONTENT' => $content
         ];
+    }
+
+    public static function getAll()
+    {
+        $path = __DIR__."/../../".POSTS_FOLDER;
+        $files = array_slice(scandir($path), 2);
+
+        usort($files, function($a, $b) {
+            $path = __DIR__."/../../".POSTS_FOLDER."/";
+            return filectime($path.$a) < filectime($path.$b);
+        });
+
+        return $files;
     }
 }

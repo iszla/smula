@@ -1,6 +1,6 @@
-Title=Example
+Title:Example
 
-Content=
+Content:
 ##This is an example
 
 With some text

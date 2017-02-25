@@ -5,7 +5,8 @@ use Render\View;
 use Controllers\PostController;
 
 Route::get('/', function() {
-    return View::render('home', ['CONTENT' => '_Smula_']);
+    $files = PostController::getAll();
+    return View::render('home', ['CONTENT' => '_Smula_', 'FILES' => $files]);
 });
 
 Route::get('/p/{post}', function($data) {
