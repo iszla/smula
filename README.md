@@ -48,7 +48,7 @@ title:Example
 content:
 ##This is an example
 
-With some text
+With some text, followed by a code block
 
 ```php
 public function andCode()
