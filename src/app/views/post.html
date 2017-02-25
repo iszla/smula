@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>{{ TITLE }}</h1>
+Created {{ CREATED_AT }}
+Modified {{ MODIFIED_AT }}
+
+{{ CONTENT | raw }}
+{% endblock %}

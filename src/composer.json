@@ -1,10 +1,13 @@
 {
     "require": {
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "twig/twig": "^2.1"
     },
     "autoload": {
         "psr-4": {
-            "": "app"
+            "Http\\": "app/Http",
+            "Controllers\\": "app/Controllers",
+            "Render\\": "app/Render"
         }
     }
 }
