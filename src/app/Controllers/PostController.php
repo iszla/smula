@@ -13,7 +13,7 @@ class PostController
             if (preg_match("/\d*-$filename.*/", $files[$i])) {
                 $path = $path.$files[$i];
                 $ctime = explode('-', $files[$i], 2);
-                $ctime = $ctime[0];
+                $ctime = date("F d Y", strtotime($ctime[0]));
                 break;
             }
         }

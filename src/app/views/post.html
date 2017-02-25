@@ -2,8 +2,7 @@
 
 {% block content %}
 <h1>{{ TITLE }}</h1>
-Created {{ CREATED_AT }}
-Modified {{ MODIFIED_AT }}
+<p>Created {{ CREATED_AT }} <span style="float:right;">Modified {{ MODIFIED_AT }}</span></p>
 
 {{ CONTENT | raw }}
 {% endblock %}
