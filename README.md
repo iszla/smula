@@ -1,2 +1,7 @@
 # smula
-Minimal PHP webframework
+Minimal framework for Markdown powered websites
+
+Requirements
+
+* Parsedown
+* Twig

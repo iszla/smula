@@ -5,7 +5,7 @@
 
 {% for file in FILES %}
     <p>
-        {{ file }}
+        <a href="/p/{{ file }}">{{ file | replace({'-': ' '}) | capitalize }}</a>
     </p>
 {% endfor %}
 {% endblock %}
