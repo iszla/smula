@@ -1,5 +1,7 @@
 <?php namespace Controllers;
 
+use Controllers\HelperController as Helper;
+
 class PostController
 {
     public static function get($filename)
@@ -19,27 +21,7 @@ class PostController
         $post = file_get_contents($path);
         $mtime = date("F d Y H:i:s", filemtime($path));
 
-        $contentFound = false;
-        $content = "";
-        $file = fopen($path, 'r');
-        if ($file) {
-            while(($line = fgets($file)) !== false) {
-                if (strpos($line, 'Title:') === 0) {
-                    $title = substr($line, 6);
-                }
-
-                if ($contentFound) {
-                    if (strpos($line, 'gist:') === 0) {
-                        $line = self::gist($line);
-                    }
-                    $content .= $line;
-                }
-
-                if (strpos($line, 'Content:') === 0) {
-                    $contentFound = true;
-                }
-            }
-        }
+        list($title, $content) = Helper::parse($path);
 
         return [
             'TITLE' => $title,

@@ -27,6 +27,8 @@ class Route
             }
 
             for ($j=0; $j < count($urls); $j++) {
+                if ($j == count($keys))
+                    break;
                 if ($urls[$j] == $key[$j]) {
                     if (preg_match('/\{.*\}/', $key[$j+1]) && $j == (count($urls) - 2)) {
                         return self::$routes[$keys[$i]]($urls[$j+1]);

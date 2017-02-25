@@ -5,7 +5,7 @@ Content:
 
 With some text
 
-```
+```php
 public function andCode()
 {
     return success;
