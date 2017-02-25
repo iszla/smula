@@ -40,5 +40,26 @@ Posts can be put in the /posts folder. The naming convention is YYYYMMDD-name-of
 
 Example filename: `20170225-example-post.md`
 
+Example post:
+
+```
+title:Example
+
+content:
+##This is an example
+
+With some text
+
+```php
+public function andCode()
+{
+    return success;
+}
+`` // should be one more ` here
+And here is a gist included in the post
+
+gist:461cc93eb75bfb123235
+```
+
 # Pages
 Specific pages can be put in the /pages folder. For example an `about` page can be useful here.
