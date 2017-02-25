@@ -38,5 +38,7 @@ Route::get('/about', function() {
 # Posts
 Posts can be put in the /posts folder. The naming convention is YYYYMMDD-name-of-your-post.md. These will be automatically be picked up by the post controller and displayed new -> old order.
 
+Example filename: `20170225-example-post.md`
+
 # Pages
 Specific pages can be put in the /pages folder. For example an `about` page can be useful here.
