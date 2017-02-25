@@ -1,6 +1,6 @@
-Title:Example
+title:Example
 
-Content:
+content:
 ##This is an example
 
 With some text
@@ -11,3 +11,6 @@ public function andCode()
     return success;
 }
 ```
+And here is a gist included in the post
+
+gist:
